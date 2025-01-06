@@ -19,7 +19,7 @@ app.use((req,res,next)=>{
 
    if(token!=null){
      token= token.replace("Bearer ","")
-     jwt.verify(token,"IK-secreat-19",
+     jwt.verify(token,process.env.JWT_SECREAT,
      (err,decoded)=>{
 
         if(!err){
