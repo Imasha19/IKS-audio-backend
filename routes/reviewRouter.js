@@ -8,6 +8,10 @@ reviewRouter.delete("/:email",deleteReview)
 reviewRouter.put("/approve/:email",approveReview)
 
 
+
+export default reviewRouter;
+
+
 /*reviewRouter.get("/approved",
     (req,res)=>{
         console.log("This is approved route")
@@ -20,6 +24,3 @@ reviewRouter.get("/:email",
     }
 )*/
 
-
-
-export default reviewRouter;

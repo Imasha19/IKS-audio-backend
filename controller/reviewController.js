@@ -8,7 +8,6 @@ export function addReview(req,res){
         return;
     }
 
-
     const data=req.body;
 
     data.name = req.user.firstName+" "+req.user.lastName;
@@ -19,8 +18,9 @@ export function addReview(req,res){
 
    newReview.save().then(()=>{
      res.json({message:"Review added successfully"});
-}).catch(()=>{
-    res.status(500).json({error:"Review addition failed"});
+}).catch((err)=>{
+    console.error(err);
+    res.status(500).json({error:"Review addition failed",details:err.message});
 });
 
 
@@ -82,7 +82,7 @@ export function deleteReview(req,res){
 
 
 
-export function approveReview(req, res) {
+export function approveReview(req,res) {
     const email = req.params.email;
   
     if (req.user == null) {
@@ -96,7 +96,7 @@ export function approveReview(req, res) {
           email: email,
         },
         {
-          isApproved: true,
+          isApproved:true,
         }
       ).then(() => {
         res.json({ message: "Review approved successfully" });
