@@ -27,11 +27,11 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    availablility:{
-        type:Boolean,
-        required:true,
-        default:true
-    }
+    availability : {
+        type : Boolean,
+        required : true,
+        default : true
+      }
 })
 
 const Product = mongoose.model("Product",productSchema);
