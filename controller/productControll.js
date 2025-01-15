@@ -56,4 +56,29 @@ export async function getProducts(req,res) {
     }
 }
 
+export async function updateProduct(req,res) {
+    try{
+        if(isItAdmin(res)){
+            const key =req.params.key;
+            const data =req.body
+            await Product.updateOne({key:key},data)
+
+            res.json({
+                message:"Product updated successfully"
+            })
+            return;
+        }else{
+             res.status(403).json({
+            message:"You are not authorized to perform this action."
+        })
+        return;
+        }
+    }catch(e){
+        res.status(500).json({
+            message:"Failed to update product"
+        })
+        }
+    }
+
+
 
