@@ -8,3 +8,4 @@ productRouter.get("/",getProducts)
 productRouter.put("/:key",updateProduct)
 
 export default productRouter;
+
