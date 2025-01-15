@@ -16,7 +16,7 @@ export async function addProduct(req,res){
         })
         return
     }
-    
+
     const data =req.body;
     const newProduct = new Product(data);
     
@@ -59,4 +59,16 @@ export async function getProducts(req,res) {
             message: "Failed to get products"
          })
     }
+}
+
+function isItAdmin(req){
+    let isAdmin = false;
+
+    if(req.user != null){
+        if(req.user.role == "admin"){
+            isAdmin=true;
+        }
+    }
+
+    return isAdmin;
 }
