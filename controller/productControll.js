@@ -85,5 +85,25 @@ export async function updateProduct(req,res){
     }
   }
 
-
+export async function deleteProduct(req,res) {
+    try{
+        if(isItAdmin(req)){
+            const key = req.params.key;
+            await Product.deleteOne({key:key})
+            res.json({
+                message:"Product deleted successfully"
+            })
+        }else{
+            res.status(403).json({
+                message:"You are not authorized to perform this action"
+            })
+            return;
+        }
+    }catch(e){
+        res.json(500).json({
+            message:"Failed to delete product"
+        })
+    }
+    
+}
 
